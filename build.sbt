@@ -6,5 +6,5 @@ scalaVersion := "2.11.7"
 
 resolvers += "SpongePowered" at "https://repo.spongepowered.org/maven"
 
-libraryDependencies += "org.spongepowered" % "spongeapi" % "3.1.0-SNAPSHOT"
+libraryDependencies += "org.spongepowered" % "spongeapi" % "3.0.0"
 libraryDependencies += "com.google.code.gson" % "gson" % "2.5"
