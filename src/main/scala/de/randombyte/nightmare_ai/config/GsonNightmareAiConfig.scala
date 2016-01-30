@@ -16,9 +16,10 @@ object GsonNightmareAiConfig {
   * Using Java Maps and Lists so Gson can handle them.
   */
 class GsonNightmareAiConfig(dropItemsOnDeath : GsonDropItemsOnDeathConfig = new GsonDropItemsOnDeathConfig()) {
+
   /**
     * Checks if the config is valid. Does some validations on type.
- *
+    *
     * @param logger For logging validation errors to the user
     * @return True if config is correct, false if not
     */
@@ -34,7 +35,8 @@ class GsonNightmareAiConfig(dropItemsOnDeath : GsonDropItemsOnDeathConfig = new 
         DropItemsOnDeathConfig(
           dropItemsOnDeath.enabledArmorEquipables.filter(_._2).keySet.map(e => e.getEntityClass.asSubclass(classOf[ArmorEquipable])).toSet,
           dropItemsOnDeath.dropItemsBlacklist.toList
-        ))
+        )
+      )
     )
   }
 }

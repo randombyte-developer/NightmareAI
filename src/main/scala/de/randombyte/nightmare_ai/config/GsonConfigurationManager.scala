@@ -39,8 +39,7 @@ class GsonConfigurationManager(file: File, registry: GameRegistry, version: Doub
 
   if (!file.exists()) {
     logger.info("Configuration file doesn't exist -> creating default config file")
-    val conf = new GsonNightmareAiConfig()
-    save(conf)
+    save(new GsonNightmareAiConfig())
   }
 
   def load(): Option[NightmareAiConfig] = {
