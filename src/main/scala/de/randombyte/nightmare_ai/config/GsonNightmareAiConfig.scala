@@ -1,7 +1,7 @@
 package de.randombyte.nightmare_ai.config
 
 import com.google.gson.annotations.Since
-import org.slf4j.{MarkerFactory, Logger}
+import org.slf4j.{Logger, MarkerFactory}
 import org.spongepowered.api.entity.{ArmorEquipable, EntityType, EntityTypes}
 import org.spongepowered.api.item.{ItemType, ItemTypes}
 
@@ -25,10 +25,11 @@ class GsonNightmareAiConfig(dropItemsOnDeath : GsonDropItemsOnDeathConfig = new 
     */
   def toConfig(logger: Logger): Option[NightmareAiConfig] = {
 
-    if (dropItemsOnDeath.enabledArmorEquipables.exists(_._1.getClass.isAssignableFrom(classOf[ArmorEquipable]))) {
-      logger.error(GsonNightmareAiConfig.marker, "DropItemsOnDeath: Some non-ArmorEquipables in enabledEntities!")
-      return None
-    }
+    if (dropItemsOnDeath.enabledArmorEquipables.exists(_._1.getClass.isAssignableFrom(classOf[ArmorEquipable])))
+      return logger.e(GsonNightmareAiConfig.marker, "DropItemsOnDeath: Some non-ArmorEquipables in enabledEntities!")
+
+    if (dropItemsOnDeath.enabledArmorEquipables.exists(_._1.equals(EntityTypes.PLAYER)))
+      return logger.e(GsonNightmareAiConfig.marker, "DropItemsOnDeath: Player must not be in enabledArmorEquipables!")
 
     Some(
       NightmareAiConfig(

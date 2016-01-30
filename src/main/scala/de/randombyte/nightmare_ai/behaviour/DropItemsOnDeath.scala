@@ -8,7 +8,7 @@ import org.spongepowered.api.event.entity.SpawnEntityEvent
 import scala.collection.JavaConversions._
 
 /**
-  * Drops all items of provided EntityTypes(except Players) at death
+  * Drops all items of provided EntityTypes at death
   *
   * @param plugin The plugin object for cause-tracking
   * @param config The corresponding config

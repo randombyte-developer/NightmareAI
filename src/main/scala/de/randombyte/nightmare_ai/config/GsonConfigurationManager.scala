@@ -48,16 +48,13 @@ class GsonConfigurationManager(file: File, registry: GameRegistry, version: Doub
       gson.fromJson(Files.newReader(file, Charsets.UTF_8), classOf[GsonNightmareAiConfig]).toConfig(logger)
     } catch {
       case ex: JsonParseException => {
-        logger.error(GsonConfigurationManager.marker, s"JsonParseException: ${ex.toString}")
-        return None
+        return logger.e(GsonConfigurationManager.marker, s"JsonParseException: ${ex.toString}")
       }
       case ex: JsonSyntaxException =>  {
-        logger.error(GsonConfigurationManager.marker, s"JsonSyntaxException: ${ex.toString}")
-        return None
+        return logger.e(GsonConfigurationManager.marker, s"JsonSyntaxException: ${ex.toString}")
       }
       case ex: JsonIOException =>  {
-        logger.error(GsonConfigurationManager.marker, s"JsonIOException: ${ex.toString}")
-        return None
+        return logger.e(GsonConfigurationManager.marker, s"JsonIOException: ${ex.toString}")
       }
     }
   }
