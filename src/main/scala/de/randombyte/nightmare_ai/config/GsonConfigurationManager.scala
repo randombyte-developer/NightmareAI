@@ -43,19 +43,12 @@ class GsonConfigurationManager(file: File, registry: GameRegistry, version: Doub
   }
 
   def load(): Option[NightmareAiConfig] = {
-
     try {
       gson.fromJson(Files.newReader(file, Charsets.UTF_8), classOf[GsonNightmareAiConfig]).toConfig(logger)
     } catch {
-      case ex: JsonParseException => {
-        return logger.e(GsonConfigurationManager.marker, s"JsonParseException: ${ex.toString}")
-      }
-      case ex: JsonSyntaxException =>  {
-        return logger.e(GsonConfigurationManager.marker, s"JsonSyntaxException: ${ex.toString}")
-      }
-      case ex: JsonIOException =>  {
-        return logger.e(GsonConfigurationManager.marker, s"JsonIOException: ${ex.toString}")
-      }
+      case ex: JsonParseException => logger.e(GsonConfigurationManager.marker, s"JsonParseException while reading config file: ${ex.getMessage}")
+      case ex: JsonSyntaxException => logger.e(GsonConfigurationManager.marker, s"JsonSyntaxException while reading config file: ${ex.getMessage}")
+      case ex: JsonIOException => logger.e(GsonConfigurationManager.marker, s"JsonIOException while reading config file: ${ex.getMessage}")
     }
   }
 

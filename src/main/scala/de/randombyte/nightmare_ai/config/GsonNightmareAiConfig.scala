@@ -25,8 +25,8 @@ class GsonNightmareAiConfig(dropItemsOnDeath : GsonDropItemsOnDeathConfig = new 
     */
   def toConfig(logger: Logger): Option[NightmareAiConfig] = {
 
-    if (dropItemsOnDeath.enabledArmorEquipables.exists(_._1.getClass.isAssignableFrom(classOf[ArmorEquipable])))
-      return logger.e(GsonNightmareAiConfig.marker, "DropItemsOnDeath: Some non-ArmorEquipables in enabledEntities!")
+    if (dropItemsOnDeath.enabledArmorEquipables.exists(!_._1.getClass.isAssignableFrom(classOf[ArmorEquipable])))
+      return logger.e(GsonNightmareAiConfig.marker, "DropItemsOnDeath: Some non-ArmorEquipable(s) in enabledArmorEquipables!")
 
     if (dropItemsOnDeath.enabledArmorEquipables.exists(_._1.equals(EntityTypes.PLAYER)))
       return logger.e(GsonNightmareAiConfig.marker, "DropItemsOnDeath: Player must not be in enabledArmorEquipables!")

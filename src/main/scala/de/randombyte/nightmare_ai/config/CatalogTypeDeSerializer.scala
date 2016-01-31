@@ -16,7 +16,7 @@ class CatalogTypeDeSerializer[T <: CatalogType](registry: GameRegistry, classOfT
   override def deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): T = {
     registry.getType[T](classOfT, json.getAsString).orElseThrow(new Supplier[JsonParseException] {
       override def get(): JsonParseException =
-        new JsonParseException(s"Couldn't find ${json.getAsString} in GameRegistry")
+        new JsonParseException(s"Couldn't find '${json.getAsString}' in GameRegistry")
     })
   }
 
